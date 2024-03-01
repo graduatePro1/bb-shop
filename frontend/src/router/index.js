@@ -35,6 +35,7 @@ const routes = [
       { path: 'search', name: 'Search', meta: { name: '搜索页面' }, component: () => import('../view/user/Search') },
       { path: 'person', name: 'Person', meta: { name: '个人信息页面' }, component: () => import('../view/user/Person') },
       { path: 'detail', name: 'Detail', meta: { name: '商品详情页面' }, component: () => import('../view/user/Detail.vue') },
+      { path: 'collect', name: 'Collect', meta: { name: '用户收藏页面' }, component: () => import('../view/user/Collect.vue') },
 
     ]
   },
