@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.bbshop.mapper.GoodsMapper">
+
+    <sql id="Base_Column_List">
+        id,name,description,img,price,unit,count,type_id,shop_id
+    </sql>
+
+    <select id="selectAll" resultType="com.bbshop.entity.Goods">
+        select goods.*, type.name as typeName, shop.name as shopName
+        from goods
+        left join type on goods.type_id = type.id
+        left join shop on goods.shop_id = shop.id
+        <where>
+            <if test="id != null"> and id= #{id}</if>
+            <if test="name != null"> and goods.name like concat('%', #{name}, '%')</if>
+            <if test="description != null"> and description= #{description}</if>
+            <if test="img != null"> and img= #{img}</if>
+            <if test="price != null"> and price= #{price}</if>
+            <if test="unit != null"> and unit= #{unit}</if>
+            <if test="count != null"> and count= #{count}</if>
+            <if test="typeId != null"> and type_id= #{typeId}</if>
+            <if test="shopId != null"> and shop_id= #{shopId}</if>
+        </where>
+        order by id desc
+    </select>
+
+    <select id="selectById" resultType="com.bbshop.entity.Goods">
+        select goods.*, shop.name as shopName, type.name as typeName
+        from goods
+        left join shop on goods.shop_id = shop.id
+        left join type on goods.type_id = type.id
+        where goods.id = #{id}
+    </select>
+
+    <delete id="deleteById">
+        delete from goods
+        where  id = #{id}
+    </delete>
+
+    <insert id="insert" parameterType="com.bbshop.entity.Goods" useGeneratedKeys="true">
+        insert into goods
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+                <if test="id != null">id,</if>
+                <if test="name != null">name,</if>
+                <if test="description != null">description,</if>
+                <if test="img != null">img,</if>
+                <if test="price != null">price,</if>
+                <if test="unit != null">unit,</if>
+                <if test="count != null">count,</if>
+                <if test="typeId != null">type_id,</if>
+                <if test="shopId != null">shop_id,</if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+                <if test="id != null">#{id},</if>
+                <if test="name != null">#{name},</if>
+                <if test="description != null">#{description},</if>
+                <if test="img != null">#{img},</if>
+                <if test="price != null">#{price},</if>
+                <if test="unit != null">#{unit},</if>
+                <if test="count != null">#{count},</if>
+                <if test="typeId != null">#{typeId},</if>
+                <if test="shopId != null">#{shopId},</if>
+        </trim>
+    </insert>
+
+    <update id="updateById" parameterType="com.bbshop.entity.Goods">
+        update goods
+        <set>
+            <if test="name != null">
+                name = #{name},
+            </if>
+            <if test="description != null">
+                description = #{description},
+            </if>
+            <if test="img != null">
+                img = #{img},
+            </if>
+            <if test="price != null">
+                price = #{price},
+            </if>
+            <if test="unit != null">
+                unit = #{unit},
+            </if>
+            <if test="count != null">
+                count = #{count},
+            </if>
+            <if test="typeId != null">
+                type_id = #{typeId},
+            </if>
+            <if test="shopId != null">
+                shop_id = #{shopId},
+            </if>
+        </set>
+        where id = #{id} 
+    </update>
+
+</mapper>

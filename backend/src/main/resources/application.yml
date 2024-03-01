@@ -1,0 +1,48 @@
+server:
+  port: 8080
+
+ip: localhost
+# mysql配置
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    username: root   #你本地的数据库用户名
+    password: 123456 #你本地的数据库密码
+    url: jdbc:mysql://127.0.0.1:3306/luckybaby?serverTimezone=Asia/Shanghai&useUnicode=true&characterEncoding=utf-8&zeroDateTimeBehavior=convertToNull&useSSL=false&allowPublicKeyRetrieval=true
+  servlet:
+    multipart:
+      max-file-size: 50MB #单个文件最大限制
+      max-request-size: 200MB #总上传的数据最大限制
+
+  mail:
+    host: smtp.qq.com
+    password: fxqrqfpftypzbebi
+    username: 1711446177@qq.com
+    port: 587
+
+    properties:
+      from: 1711446177@qq.com
+      mail:
+        smtp:
+          socketFactoryClass: javax.net.ssl.SSLSocketFactory
+
+  data:
+    redis:
+      host: localhost
+      database: 0
+      port: 6379
+
+# mybatis的entity和resources下的xml映射配置
+mybatis:
+  mapper-locations: classpath:mapper/*.xml
+  type-aliases-package: com.bbshop.entity
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+    map-underscore-to-camel-case: true
+
+# 分页配置
+pagehelper:
+  helper-dialect: mysql
+  reasonable: true
+  support-methods-arguments: true
+  params: count=countSql
