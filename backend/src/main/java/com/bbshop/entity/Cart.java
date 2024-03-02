@@ -14,14 +14,13 @@ public class Cart implements Serializable {
     /** ID */
     private Integer id;
     private Integer userId;
-    private Integer businessId;
+    private Integer shopId;
     private Integer goodsId;
     private Integer num;
 
-    private String businessName;
+    private String shopName;
     private String goodsName;
     private String goodsImg;
     private String goodUnit;
     private Double goodsPrice;
-
 }

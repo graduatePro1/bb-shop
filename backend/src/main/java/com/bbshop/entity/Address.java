@@ -16,6 +16,8 @@ public class Address implements Serializable {
     private Integer userId;
     private String username;
     private String useraddress;
+    private String addressCode;
+    private String addressRear;
     private String phone;
 
 }

@@ -25,7 +25,7 @@ public class OrdersController {
     }
 
     /**
-     * 分页查询
+     * 分页查询、按订单号查询
      */
     @GetMapping("/selectPage")
     public ResultBean selectPage(Orders orders,
@@ -51,6 +51,15 @@ public class OrdersController {
     @DeleteMapping("/delete/batch")
     public ResultBean deleteBatch(@RequestBody List<Integer> ids) {
         ordersService.deleteBatch(ids);
+        return ResultBean.success();
+    }
+
+    /**
+     * 新增
+     */
+    @PostMapping("/add")
+    public ResultBean add(@RequestBody Orders orders) {
+        ordersService.add(orders);
         return ResultBean.success();
     }
 }

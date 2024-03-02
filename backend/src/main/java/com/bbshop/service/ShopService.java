@@ -46,7 +46,7 @@ public interface ShopService {
     /**
      * 分页查询
      */
-    public PageInfo<Shop> selectPage(Shop business, Integer pageNum, Integer pageSize) ;
+    public PageInfo<Shop> selectPage(Shop shop, Integer pageNum, Integer pageSize) ;
 
 
 

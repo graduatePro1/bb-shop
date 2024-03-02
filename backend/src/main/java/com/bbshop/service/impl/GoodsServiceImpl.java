@@ -94,8 +94,8 @@ public class GoodsServiceImpl implements GoodsService {
         return goodsMapper.selectByTypeId(id);
     }
 
-    public List<Goods> selectByBusinessId(Integer id) {
-        return goodsMapper.selectByBusinessId(id);
+    public List<Goods> selectByShopId(Integer id) {
+        return goodsMapper.selectByshopId(id);
     }
 
     public List<Goods> selectByName(String name) {

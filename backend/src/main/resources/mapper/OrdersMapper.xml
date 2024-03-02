@@ -9,14 +9,16 @@
     </sql>
 
     <select id="selectAll" resultType="com.bbshop.entity.Orders">
-        select orders.*, shop.name as shopName, goods.img as goodsImg, goods.name as goodsName, goods.price as goodsPrice, goods.unit as goodsUnit,
-               address.username as username, address.useraddress as useraddress, address.phone as phone
+        select * from
+        (select orders.*, shop.name as shopName, goods.img as goodsImg, goods.name as goodsName, goods.price as goodsPrice, goods.unit as goodsUnit,
+        address.username as username, address.useraddress as useraddress, address.phone as phone
         from orders
         left join shop on orders.shop_id = shop.id
         left join goods on orders.goods_id = goods.id
         left join address on orders.address_id = address.id
+
         <where>
-            <if test="id != null and id != ''"> and id= #{id}</if>
+            <if test="id != null"> and id= #{id}</if>
             <if test="userId != null"> and orders.user_id = #{userId}</if>
             <if test="shopId != null"> and orders.shop_id = #{shopId}</if>
             <if test="goodsId != null"> and goods_id = #{goodsId}</if>
@@ -24,9 +26,15 @@
             <if test="price != null"> and price = #{price}</if>
             <if test="addressId != null"> and address_id = #{addressId}</if>
             <if test="status != null"> and status = #{status}</if>
-            <if test="orderId != null and orderId!=''"> and order_id like concat('%',#{orderId},'%')</if>
+
+        </where>) as goodsPlus
+
+        <where>
+            <if test="orderId != null and orderId !=''"> order_id like concat('%',#{orderId},'%')</if>
+            <if test="goodsName != null and goodsName !=''"> or goodsName like concat('%',#{goodsName},'%')</if>
         </where>
-    </select>
+        </select>
+
 
     <select id="selectById" resultType="com.bbshop.entity.Orders">
         select

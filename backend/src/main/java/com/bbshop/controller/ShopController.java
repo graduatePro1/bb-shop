@@ -10,10 +10,7 @@ import com.bbshop.service.BaseService;
 import com.bbshop.service.ShopService;
 import com.bbshop.service.UserService;
 import org.springframework.beans.BeanUtils;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 import java.lang.reflect.AccessibleObject;
@@ -41,5 +38,14 @@ public class ShopController {
         shopService.updateById(shop,account.getCode(),account.isEmailState());
         return ResultBean.success();
 
+    }
+
+    /**
+     * 根据ID查询店铺信息
+     */
+    @GetMapping("/selectById/{id}")
+    public ResultBean selectById(@PathVariable Integer id) {
+        Shop shop = shopService.selectById(id);
+        return ResultBean.success(shop);
     }
 }

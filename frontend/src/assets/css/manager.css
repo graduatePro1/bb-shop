@@ -1,6 +1,6 @@
 .manager-container {
     background-color: #f8f8ff;
-    min-height: 100vh;
+    height: 100%;
 }
 
 .manager-header {

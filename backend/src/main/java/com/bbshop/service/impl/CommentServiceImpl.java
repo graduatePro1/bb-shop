@@ -1,5 +1,6 @@
 package com.bbshop.service.impl;
 
+import cn.hutool.core.date.DateUtil;
 import com.bbshop.common.constant.RoleEnum;
 import com.bbshop.entity.Account;
 import com.bbshop.entity.Comment;
@@ -74,6 +75,12 @@ public class CommentServiceImpl implements CommentService {
             commentMapper.deleteById(id);
         }
     }
-
+    /**
+     * 用户评价
+     */
+    public void add(Comment comment) {
+        comment.setTime(DateUtil.now());
+        commentMapper.insert(comment);
+    }
 
 }

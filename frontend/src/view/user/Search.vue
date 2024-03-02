@@ -68,7 +68,7 @@ export default {
         if (res.code === '200') {
           this.recommendData = res.data
         } else {
-          this.$message.error(res.msg)
+          this.$message.error(res.message)
         }
       })
     },
@@ -87,7 +87,7 @@ export default {
           this.goodsData = res.data.list
           this.total = res.data.total
         } else {
-          this.$message.error(res.msg)
+          this.$message.error(res.message)
         }
       })
     },

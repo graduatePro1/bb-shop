@@ -8,7 +8,7 @@
           <div style="flex: 2">
             <div style="display: flex; color: #666666FF; margin: 14px 0" v-for="item in typeData">
               <img :src="item.img" alt="" style="height: 20px; width: 20px">
-              <div style="margin-left: 10px; font-size: 14px"><a href="#" @click="navTo('/front/type?id=' + item.id)">{{item.name}}</a></div>
+              <div style="margin-left: 10px; font-size: 14px"><a href="#" @click="navTo('/user/type?id=' + item.id)">{{item.name}}</a></div>
             </div>
           </div>
 <!--          轮播图-->
@@ -70,7 +70,7 @@
                 </a>
               </div>
               <div style="flex: 1; text-align: center">
-                <a class="person-content" href="#" @click="navTo('/front/orders')">
+                <a class="person-content" href="#" @click="navTo('/user/orders')">
                   <img src="@/assets/imgs/订单.png" alt="" style="height: 25px; width: 25px">
                   <div >我的订单</div>
                 </a>
@@ -146,7 +146,7 @@ export default {
         if (res.code === '200') {
           this.recommendData = res.data
         } else {
-          this.$message.error(res.msg)
+          this.$message.error(res.message)
         }
       })
     },
@@ -155,7 +155,7 @@ export default {
         if (res.code === '200') {
           this.typeData = res.data
         } else {
-          this.$message.error(res.msg)
+          this.$message.error(res.message)
         }
       })
     },
@@ -180,7 +180,7 @@ export default {
         if (res.code === '200') {
           this.goodsData = res.data
         } else {
-          this.$message.error(res.msg)
+          this.$message.error(res.message)
         }
       })
     },

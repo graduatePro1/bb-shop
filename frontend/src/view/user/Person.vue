@@ -35,14 +35,14 @@
       </el-form>
     </el-card>
     <el-dialog title="获取验证码" :visible.sync="dialogEmailVisible" width="30%" :close-on-click-modal="false" destroy-on-close>
-      <el-form :model="user" label-width="80px" style="padding-right: 20px" :rules="rules" ref="formRef">
+      <el-form :model="user" label-width="80px" style="padding-right: 70px" :rules="rules" ref="formRef">
         <el-form-item prop="email">
           <el-input class="el-input" v-model="user.email" type="text" placeholder="请输入需要重置密码的邮箱"
                     prefix-icon="el-icon-message" disabled/>
         </el-form-item>
-        <el-form-item prop="code">
-          <el-row :gutter="10">
-            <el-col :span="18" style="text-align: left">
+        <el-form-item prop="code" style="padding-right: 50px">
+          <el-row :gutter="14">
+            <el-col :span="18" >
               <el-input v-model="user.code" :maxlength="6" class="el-input numrule" type="number" placeholder="请输入邮箱验证码" prefix-icon="el-icon-edit"/>
             </el-col>
             <el-col :span="5" >

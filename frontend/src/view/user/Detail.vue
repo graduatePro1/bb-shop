@@ -13,8 +13,8 @@
             <div style="margin-top: 20px">
               <img src="@/assets/imgs/right.png" alt="" style="width: 70%; height: 130px; border-radius: 15px">
             </div>
-            <div style="color: #666666FF; margin-top: 20px">商家：<a href="#" @click="navTo('/front/business?id=' + goodsData.businessId)">{{goodsData.businessName}}</a></div>
-            <div style="color: #666666FF; margin-top: 20px">分类：<a href="#" @click="navTo('/front/type?id=' + goodsData.typeId)">{{goodsData.typeName}}</a></div>
+            <div style="color: #666666FF; margin-top: 20px">商家：<a href="#" @click="navTo('/user/shop?id=' + goodsData.shopId)">{{goodsData.shopName}}</a></div>
+            <div style="color: #666666FF; margin-top: 20px">分类：<a href="#" @click="navTo('/user/type?id=' + goodsData.typeId)">{{goodsData.typeName}}</a></div>
             <div style="color: #666666FF; margin-top: 20px">
               <el-button type="warning" @click="addCart">加入购物车</el-button>
               <el-button type="warning" @click="collect">收藏</el-button>
@@ -74,7 +74,7 @@ export default {
         if (res.code === '200') {
           this.goodsData = res.data
         } else {
-          this.$message.error(res.msg)
+          this.$message.error(res.message)
         }
       })
     },
@@ -84,24 +84,24 @@ export default {
     collect() {
       let data = {
         userId: this.user.id,
-        businessId: this.goodsData.businessId,
+        shopId: this.goodsData.shopId,
         goodsId: this.goodsId
       }
       this.$request.post('/collect/add', data).then(res => {
         if (res.code === '200') {
           this.$message.success('收藏成功')
         } else {
-          this.$message.error(res.msg)
+          this.$message.error(res.message)
         }
       })
     },
     addCart() {
-      let data = {num: 1, userId: this.user.id, goodsId: this.goodsId, businessId: this.goodsData.businessId}
+      let data = {num: 1, userId: this.user.id, goodsId: this.goodsId, shopId: this.goodsData.shopId}
       this.$request.post('/cart/add', data).then(res => {
         if (res.code === '200') {
           this.$message.success('操作成功')
         } else {
-          this.$message.error(res.msg)
+          this.$message.error(res.message)
         }
       })
     },
@@ -110,7 +110,7 @@ export default {
         if (res.code === '200') {
           this.commentData = res.data
         } else {
-          this.$message.error(res.msg)
+          this.$message.error(res.message)
         }
       })
     },

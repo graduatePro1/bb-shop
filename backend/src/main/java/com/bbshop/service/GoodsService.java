@@ -50,10 +50,10 @@ public interface GoodsService {
 
     public List<Goods> selectByTypeId(Integer id);
 
-    public List<Goods> selectByBusinessId(Integer id);
+    public List<Goods> selectByShopId(Integer id);
 
     public List<Goods> selectByName(String name);
 
-
     public List<Goods> getRandomGoods(int num);
+
 }

@@ -73,7 +73,7 @@ export default {
           this.load(1)
           this.fromVisible = false
         } else {
-          this.$message.error(res.msg)  // 弹出错误的信息
+          this.$message.error(res.message)  // 弹出错误的信息
         }
       })
     },
@@ -84,7 +84,7 @@ export default {
             this.$message.success('操作成功')
             this.load(1)
           } else {
-            this.$message.error(res.msg)  // 弹出错误的信息
+            this.$message.error(res.message)  // 弹出错误的信息
           }
         })
       }).catch(() => {
@@ -104,7 +104,7 @@ export default {
             this.$message.success('操作成功')
             this.load(1)
           } else {
-            this.$message.error(res.msg)  // 弹出错误的信息
+            this.$message.error(res.message)  // 弹出错误的信息
           }
         })
       }).catch(() => {
@@ -123,7 +123,7 @@ export default {
           this.tableData = res.data?.list
           this.total = res.data?.total
         } else {
-          this.$message.error(res.msg)
+          this.$message.error(res.message)
         }
       })
     },

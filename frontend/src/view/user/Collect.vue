@@ -3,7 +3,7 @@
     <div style="width: 70%; background-color: white; margin: 30px auto; border-radius: 20px">
       <div style="padding-bottom: 10px">
         <div style="font-size: 18px; color: #000000FF; line-height: 80px; border-bottom: #cccccc 1px solid;">
-          <div style="margin-left: 20px">全部收藏（{{ collectData.length }}件）</div>
+          <div style="margin-left: 20px">全部收藏（{{ total }}件）</div>
         </div>
         <div style="margin: 20px 0; padding: 0 50px">
           <div class="table">
@@ -15,7 +15,7 @@
                 </template>
               </el-table-column>
               <el-table-column prop="goodsName" label="商品名称" width="350px"></el-table-column>
-              <el-table-column prop="businessName" label="店铺名称"></el-table-column>
+              <el-table-column prop="shopName" label="店铺名称"></el-table-column>
               <el-table-column prop="goodsPrice" label="商品价格"></el-table-column>
               <el-table-column label="操作" align="center" width="180">
                 <template v-slot="scope">
@@ -48,10 +48,10 @@ export default {
 
   data() {
     return {
-      user: JSON.parse(localStorage.getItem('xm-user') || '{}'),
+      user: JSON.parse(localStorage.getItem('bbshop-user') || '{}'),
       collectData: [],
       pageNum: 1,   // 当前的页码
-      pageSize: 10,  // 每页显示的个数
+      pageSize: 3,  // 每页显示的个数
       total: 0,
     }
   },
@@ -72,7 +72,7 @@ export default {
           this.collectData = res.data?.list
           this.total = res.data?.total
         } else {
-          this.$message.error(res.msg)
+          this.$message.error(res.message)
         }
       })
     },
@@ -80,13 +80,17 @@ export default {
       location.href = url
     },
     del(id) {
-      this.$request.delete('/collect/delete/' + id).then(res => {
-        if (res.code === '200') {
-          this.$message.success('移除成功')
-          this.loadCollect(1)
-        } else {
-          this.$message.error(res.msg)
-        }
+      this.$confirm('是否移除','确认删除',{type: "warning"}).then(()=>{
+        this.$request.delete('/collect/delete/' + id).then(res => {
+          if (res.code === '200') {
+            this.$message.success('移除成功')
+            this.loadCollect(1)
+          } else {
+            this.$message.error(res.message)
+          }
+        });
+      }).catch(()=>{
+
       })
     },
     handleCurrentChange(pageNum) {

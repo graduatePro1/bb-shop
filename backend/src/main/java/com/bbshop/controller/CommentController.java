@@ -64,6 +64,14 @@ public class CommentController {
 
     }
 
+    /**
+     * 用户评价
+     */
+    @PostMapping("/add")
+    public ResultBean add(@RequestBody Comment comment) {
+        commentService.add(comment);
+        return ResultBean.success();
+    }
 
 
 }

@@ -33,9 +33,16 @@ public interface OrdersMapper {
     Orders selectById(Integer id);
 
     /**
-      * 查询所有
+      * 查询所有、条件查询：订单号/商品名称
     */
+    /**
+     * 查询所有、条件查询：订单号/商品名称
+     */
+//    List<Orders> selectBase(Orders orders);
     List<Orders> selectAll(Orders orders);
+
+
+
 
     @Select("select * from orders where status = '已完成' or status = '已评价'")
     List<Orders> selectAllOKOrders();

@@ -108,4 +108,25 @@ public class GoodsController {
         PageInfo<Goods> goodsPageInfo = goodsService.selectPage(goods, pageNum, pageSize);
         return ResultBean.success(goodsPageInfo);
     }
+
+    /**
+     * 根据商家id查询上架的所有商品
+     * @param id
+     * @return
+     */
+    @GetMapping("/selectByShopId")
+    public ResultBean selectByShopId(@RequestParam Integer id) {
+        List<Goods> list = goodsService.selectByShopId(id);
+        return ResultBean.success(list);
+    }
+
+    /**
+     * 根据类型查找商品
+     */
+
+    @GetMapping("/selectByTypeId")
+    public ResultBean selectByTypeId(@RequestParam Integer id) {
+        List<Goods> list = goodsService.selectByTypeId(id);
+        return ResultBean.success(list);
+    }
 }

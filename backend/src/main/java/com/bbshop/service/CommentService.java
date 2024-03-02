@@ -34,4 +34,10 @@ public interface CommentService{
      * 批量删除
      */
     public void deleteBatch(List<Integer> ids) ;
+
+    /**
+     *
+     * @param comment
+     */
+    public void add(Comment comment);
 }
